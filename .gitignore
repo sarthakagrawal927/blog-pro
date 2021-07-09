@@ -3,3 +3,4 @@ server/pnpm-lock.yaml
 client/node_modules
 client/pnpm-lock.yaml
 server/.env
+server/images
