@@ -5,9 +5,6 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 require("dotenv").config();
 
-const feedRoutes = require("./routes/feed");
-const authRoutes = require("./routes/auth");
-
 const app = express();
 
 const fileStorage = multer.diskStorage({
@@ -48,9 +45,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/feed", feedRoutes);
-app.use("/auth", authRoutes);
-
 app.use((error, req, res, next) => {
   if (error) console.log(error.message);
   const status = error.statusCode || 500;
@@ -65,8 +59,6 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((result) => {
-    const server = app.listen(8080);
-    const io = require("./socket").init(server);
-    io.on("connection", (socket) => {});
+    app.listen(8080);
   })
   .catch((err) => console.log(err));
