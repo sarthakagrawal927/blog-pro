@@ -1,5 +1,4 @@
 const path = require("path");
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -53,7 +52,7 @@ app.use("/feed", feedRoutes);
 app.use("/auth", authRoutes);
 
 app.use((error, req, res, next) => {
-  console.log(error);
+  if (error) console.log(error.message);
   const status = error.statusCode || 500;
   const message = error.message;
   const data = error.data;
