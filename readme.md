@@ -6,7 +6,7 @@ Basic react setup
 
 ## Backend
 
-Socket IO
+Express, SocketIO
 
 ## Purpose
 
