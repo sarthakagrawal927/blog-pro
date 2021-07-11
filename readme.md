@@ -6,4 +6,8 @@ Basic react setup
 
 ## Backend
 
-Graphql, socketIO, fileUpload & testing
+Socket IO
+
+## Purpose
+
+To understand how can socketIO improve the general user experience and how to build it over preexisting applications.
