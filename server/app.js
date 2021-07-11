@@ -1,4 +1,6 @@
 const path = require("path");
+const { clearImage } = require("./util/file");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -49,6 +51,24 @@ app.use((error, req, res, next) => {
 });
 
 app.use(auth);
+app.use(cors());
+
+app.put("/post-image", (req, res, next) => {
+  if (!req.isAuth) {
+    const error = new Error("not authenticated");
+    error.code = 401;
+    throw error;
+  }
+  if (!req.file) {
+    return res.status(200).json({ message: "No file provided" });
+  }
+  if (req.body.oldPath) {
+    clearImage(req.body.oldPath);
+  }
+  return res
+    .status(201)
+    .json({ message: "File added", filePath: req.file.path });
+});
 
 app.use(
   "/graphql",
